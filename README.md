@@ -1,15 +1,32 @@
-##### Skills: React.js · Express.js · MongoDB Atlas · Mongoose ODM · TypeScript · Node.js
+### Skills: React.js · Express.js · MongoDB Atlas · Mongoose ODM · TypeScript · Node.js
 
-##### Description: 
-- Client directory is for frontend with reactjs.
-- When run the build command on client directory the distributable code(production ready code) is add to public directory in server.
-- Server directory has all the backend logic which handles apis and serves the static file.
-- There are five pages in this application.
-- Home page -> display products with "Add to Cart" button.
-- Checkout page -> display cart items and handles placing order operation.
-- Orders page -> display orders with "tracking" button.
-- Tracking page -> display the progress bar for specific order item.
-- Not found page -> error page for 404 status.
+### 🛒 About the Project
+  - The E-commerce Application is a full-stack web project designed to simulate a real-world online shopping experience. It combines a modern frontend with a robust backend, demonstrating how client-side applications can be built, bundled, and served directly by a server.
+  - This project was created while learning full-stack development, with a strong focus on application structure, API handling, and production-ready builds.
 
+### 🏗️ Application Architecture
+  - The project is divided into client and server directories.
+  - The client directory contains the frontend application.
+  - Running the frontend build process generates production-ready assets, which are placed into the server’s public directory.
+  - The server directory handles:
+    - API logic
+    - Database operations
+    - Serving static frontend files
+  - This setup mimics how real-world full-stack applications are deployed.
 
-### Demo link: <https://mern-ecommerce-tqte.onrender.com/>
+### ✨ Features
+  - Home Page
+    - Displays available products
+    - Allows users to add items to the cart
+  - Checkout Page
+    - Shows cart items
+    - Handles order placement
+  - Orders Page
+    - Displays previously placed orders
+    - Includes navigation to order tracking
+  - Tracking Page
+    - Shows order progress using a visual progress bar
+  - Not Found Page
+    - Custom 404 error handling for invalid routes
+
+## Demo link: <https://mern-ecommerce-tqte.onrender.com/>
