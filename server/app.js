@@ -1,7 +1,11 @@
-import dotenv from "dotenv"; dotenv.config()
+import dotenv from "dotenv"
+dotenv.config()
 
 // import dependencies;
 import express from "express"
+import path from "path"
+import { fileURLToPath } from "url"
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 import helmet from "helmet"
 import cors from "cors"
 import { xss } from "express-xss-sanitizer"
@@ -29,9 +33,11 @@ const port = process.env.PORT || 5000
 // security middlewares;
 app.use(helmet())
 app.use(xss())
-app.use(cors({
-  origin: "http://localhost:5173/"
-}))
+app.use(
+  cors({
+    origin: "http://localhost:5173/",
+  }),
+)
 // app.use(rateLimiter({
 //   windowMs: 1000 * 60 * 15,
 //   max: 15
@@ -46,7 +52,7 @@ app.use(express.json())
 
 // serving static files;
 app.use("/images", express.static("./public/images"))
-app.use(express.static("./public/dist"))
+app.use(express.static(path.join(__dirname, "public/dist")))
 
 // main routes;
 app.use("/api/v1/products", productsRouter)
@@ -55,24 +61,23 @@ app.use("/api/v1/cart-items", cartItemsRouter)
 app.use("/api/v1/delivery-options", deliveryOptionsRouter)
 app.use("/api/v1/payment-summary", paymentSummaryRouter)
 app.use("/api/v1/reset", reset)
-// app.get("/", (req, res) => {
-//   res.sendStatus(200);
-// })
+
+// react fallback route;
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/dist/index.html"))
+})
 
 // error handling middlewares;
-app.use(errorHandlingMiddleware);
-app.use(notFoundMidddleware);
+app.use(errorHandlingMiddleware)
+app.use(notFoundMidddleware)
 
-
-
-async function start () {
+async function start() {
   try {
     // await async function() {return new Promise(res => setTimeout(res, 1000))}()
     // await async function() {return new Promise(res => setTimeout(() => {console.log("hello"); res()}, 1000))}()
     await connectDB(process.env.MONGO_URI)
     console.log("Connected to database")
     app.listen(port, console.log("Server is running on port " + port + "..."))
-    
   } catch (err) {
     console.log(err)
   }
